@@ -40,10 +40,27 @@
     </div>
 
     <!-- Hero content: will be in the middle -->
-    <div class="">
+    <div>
       <div class="container has-text-centered">
         <SearchBar />
+        <div class="columns">
+          <div class="column is-6">
+            <Card />
+          </div>
+          <div class="column is-6">
+            <Card />
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-6">
+            <Card />
+          </div>
+          <div class="column is-6">
+            <Card />
+          </div>
+        </div>
       </div>
+
     </div>
 
     <!-- Hero footer: will stick at the bottom -->
@@ -59,11 +76,13 @@
 
 <script>
 import SearchBar from ".././components/SearchBar";
+import Card from ".././components/Cards";
 
 export default {
   name: "home",
   components: {
-    SearchBar
+    SearchBar,
+    Card
   }
 };
 </script>
