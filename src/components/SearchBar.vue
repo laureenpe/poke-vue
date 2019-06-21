@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="columns is-mobile">
+    <div class="columns">
       <div class="column is-half is-offset-one-quarter">
         <h1 class="content"><b>Select your favorite:</b> {{ selected }}</h1>
         <b-field label="Find a pokemon">
