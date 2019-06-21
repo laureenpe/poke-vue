@@ -64,7 +64,6 @@
   border-radius: 6px;
   overflow: hidden;
   position: relative;
-  margin: 1.5rem;
   font-family: Abel, Arial, Verdana, sans-serif;
 }
 
