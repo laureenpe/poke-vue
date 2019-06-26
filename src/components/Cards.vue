@@ -6,7 +6,6 @@
           Bulbasur
         </div>
         <figure class="image is-128x128">
-          <img src="@/assets/pokemons/Bulbasaur.png">
         </figure>
 
       </div>
@@ -211,5 +210,8 @@
   bottom: 1rem;
   right: 1rem;
   font-size: 0.9em;
+}
+.pa-4 {
+  padding: 4em;
 }
 </style>
