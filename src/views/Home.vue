@@ -43,24 +43,40 @@
     <div>
       <div class="container has-text-centered">
         <SearchBar />
-        <div class="columns">
-          <div class="column is-6">
-            <Card />
-          </div>
-          <div class="column is-6">
-            <Card />
-          </div>
-        </div>
-        <div class="columns">
-          <div class="column is-6">
-            <Card />
-          </div>
-          <div class="column is-6">
-            <Card />
+        <div class="columns is-multiline is-1-mobile">
+          <div
+            class="column pa-4"
+            v-for="item in data"
+            :key="item.id"
+          >
+            <div class="card">
+              <div class="additional">
+                <div class="user-card">
+                  <div class="points">
+                    {{ item.name }}
+                  </div>
+                  <figure class="image is-128x128">
+                    <img :src="item.sprites.back_default">
+                  </figure>
+
+                </div>
+                <div class="more-info">
+                  <h1>Jane Doe</h1>
+                  <div class="coords">
+                    <span>Group Name</span>
+                    <span>Joined January 2019</span>
+                  </div>
+                  <div class="coords">
+                    <span>Position/Role</span>
+                    <span>City, Country</span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
     </div>
 
     <!-- Hero footer: will stick at the bottom -->
@@ -76,13 +92,36 @@
 
 <script>
 import SearchBar from ".././components/SearchBar";
-import Card from ".././components/Cards";
+//import Card from ".././components/Cards";
+import axios from "axios";
+let urlApi = "https://pokeapi.co/api/v2/pokemon/";
 
 export default {
   name: "home",
   components: {
-    SearchBar,
-    Card
+    SearchBar
+    //Card
+  },
+  data() {
+    return {
+      data: []
+    };
+  },
+  methods: {
+    async getPokemonById(id) {
+      let pokemon = await axios.get(urlApi + id);
+      return pokemon;
+    }
+  },
+  async mounted() {
+    let pokemons = await axios.get(urlApi);
+    console.log(pokemons.data);
+    let results = pokemons.data.results;
+    for (let index = 0; index < results.length; index++) {
+      const element = results[index];
+      const pokemon = await this.getPokemonById(element.name);
+      this.data.push(pokemon.data);
+    }
   }
 };
 </script>
