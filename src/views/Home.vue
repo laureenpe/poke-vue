@@ -65,6 +65,7 @@
                   <h1> {{item.name}}</h1>
                   <div class="coords">
                     <p>Description: {{item.description}}</p>
+                    <p>Skills: {{item.ability}}</p>
                   </div>
 
                 </div>
@@ -96,6 +97,7 @@ import { async } from "q";
 
 var pokemonApi = "https://pokeapi.co/api/v2/pokemon/";
 var pokemonCharacteristics = "https://pokeapi.co/api/v2/characteristic/";
+var urlAbility = "https://pokeapi.co/api/v2/ability/";
 
 export default {
   components: {
@@ -126,11 +128,17 @@ export default {
       const pokemonId = pokemon.id;
       const urlPokemon = await axios.get(pokemonCharacteristics + pokemonId);
       const getData = urlPokemon.data;
-
       const getDescriptions = getData.descriptions;
-      console.log("getDescription ", getDescriptions);
 
-      pokemon.description = getDescriptions[0].description;
+      //habilities
+      const ability = await axios.get(urlAbility + pokemonId);
+      const getDataAbility = ability.data;
+      //console.log("gender", getDataAbility);
+
+      pokemon.description = getDescriptions[1].description;
+      pokemon.ability = getDataAbility.name;
+      console.log("habilidades", pokemon);
+
       this.pokemons.push(pokemon);
       //console.log("array", this.description);
     }
