@@ -6,6 +6,10 @@ import store from './store'
 // plugins
 import './plugins/bulma';
 
+//styles
+import './assets/styles/main.scss';
+
+
 Vue.config.productionTip = false
 
 new Vue({
