@@ -6,10 +6,7 @@
         <div class="container">
           <div class="navbar-brand">
             <a class="navbar-item">
-              <img
-                src="../assets/pokemon.png"
-                alt="Logo"
-              >
+
             </a>
             <span
               class="navbar-burger burger"
@@ -55,13 +52,16 @@
                   <div class="points">
                     {{ item.name }}
                   </div>
-                  <figure class="image is-128x128">
-                    <img :src="item.sprites.back_default">
+                  <figure class="image is-128x128 is-centered">
+                    <img
+                      class="is-rounded"
+                      :src="item.sprites.back_default"
+                    >
                   </figure>
 
                 </div>
                 <div class="more-info">
-                  <h1>Jane Doe</h1>
+                  <h1> {{ item.name }}</h1>
                   <div class="coords">
                     <span>Group Name</span>
                     <span>Joined January 2019</span>
