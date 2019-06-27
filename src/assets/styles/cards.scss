@@ -17,8 +17,8 @@
 }
 
 .card .additional {
-   position: absolute;
-   width: 150px;
+   //position: absolute;
+   //width: 150px;
    height: 100%;
    background: linear-gradient(#de685e, #ee786e);
    transition: width 0.4s;
@@ -78,10 +78,11 @@
    position: absolute;
    left: 150px;
    height: 100%;
+   background: white;
 }
 
 .card .additional .more-info h1 {
-   color: #fff;
+   color: black;
    margin-bottom: 0;
 }
 
@@ -91,13 +92,11 @@
 
 .card .additional .coords {
    margin: 0 1rem;
-   color: #fff;
+   color: #224c36;
    font-size: 1rem;
 }
 
-.card.green .additional .coords {
-   color: #325c46;
-}
+
 
 .card .additional .coords span+span {
    float: right;
