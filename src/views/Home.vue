@@ -39,8 +39,35 @@
     <!-- Hero content: will be in the middle -->
     <div>
       <div class="container has-text-centered">
-        <SearchBar />
-        <div class="columns is-multiline is-1-mobile">
+        <!-- Search bar-->
+        <section>
+          <div class="columns">
+            <div class="column is-half is-offset-one-quarter">
+              <h1 class="content"><b>Select your favorite:</b> </h1>
+              <b-field label="Find a pokemon">
+                <b-autocomplete
+                  type="autocomplete"
+                  v-model="pokemonsName"
+                >
+
+                </b-autocomplete>
+              </b-field>
+            </div>
+          </div>
+        </section>
+        <!-- end Search bar-->
+
+        <div v-if="pokemons.length == 0">
+          <img
+            src="../assets/spinner.svg"
+            alt="loader"
+          >
+        </div>
+
+        <div
+          class="columns is-multiline is-1-mobile"
+          v-if="pokemons.length > 0"
+        >
           <div
             class="column pa-4"
             v-for="item in pokemons"
@@ -89,7 +116,6 @@
 </template>
 
 <script>
-import SearchBar from "../components/SearchBar";
 //import Card from ".././components/Cards";
 import axios from "axios";
 import Axios from "axios";
@@ -102,12 +128,11 @@ var urlAbility = "https://pokeapi.co/api/v2/ability/";
 var urlMoves = "https://pokeapi.co/api/v2/move/";
 
 export default {
-  components: {
-    SearchBar
-  },
   data() {
     return {
-      pokemons: []
+      pokemons: [],
+      pokemonsResult: [],
+      pokemonsName: ""
     };
   },
   methods: {
@@ -139,15 +164,23 @@ export default {
       //moves
       const moves = await axios.get(urlMoves + pokemonId);
       const getDataMoves = moves.data.name;
-      //console.log("moves", moves.data.name);
 
       pokemon.description = getDescriptions[1].description;
       pokemon.ability = getDataAbility.name;
       pokemon.moves = getDataMoves;
-      console.log("Pokemon array", pokemon);
 
       this.pokemons.push(pokemon);
-      //console.log("array", this.description);
+      this.pokemonsResult.push(pokemon); //to use on filtering
+    }
+  },
+  watch: {
+    pokemonsName(value) {
+      //Filter by name
+      this.pokemons = this.pokemonsResult.filter(function(item) {
+        const name = item.name.toLowerCase();
+        return name.includes(value.toLowerCase());
+        console.log("name", name);
+      });
     }
   }
 };
