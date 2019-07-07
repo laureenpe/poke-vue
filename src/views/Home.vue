@@ -41,7 +41,7 @@
       <div class="container has-text-centered">
         <!-- Search bar-->
         <section>
-          <div class="columns">
+          <div class="my-2">
             <div class="column is-half is-offset-one-quarter">
               <h1 class="content"><b>Select your favorite:</b> </h1>
               <b-field label="Find a pokemon">
@@ -65,11 +65,11 @@
         </div>
 
         <div
-          class="columns is-multiline is-1-mobile"
+          class="columns is-multiline is-1-mobile ma-0"
           v-if="pokemons.length > 0"
         >
           <div
-            class="column pa-4"
+            class="column"
             v-for="item in pokemons"
             :key="item.id"
           >
@@ -185,3 +185,14 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.ma-0 {
+  @media screen and (max-width: 550px) {
+    margin: 0;
+  }
+}
+.my-2 {
+  margin: 2rem;
+}
+</style>
